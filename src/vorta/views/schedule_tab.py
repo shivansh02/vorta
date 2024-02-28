@@ -3,6 +3,7 @@ from PyQt6.QtCore import QDateTime, QLocale, Qt
 from PyQt6.QtWidgets import (
     QAbstractItemView,
     QApplication,
+    QFileDialog,
     QHeaderView,
     QListWidgetItem,
     QTableWidgetItem,
@@ -107,6 +108,9 @@ class ScheduleTab(ScheduleBase, ScheduleUI, BackupProfileMixin):
 
         # Connect to palette change
         self.app.paletteChanged.connect(lambda p: self.set_icons())
+
+        self.preBackupAttachButton.clicked.connect(self.attach_pre_backup_file)
+        self.postBackupAttachButton.clicked.connect(self.attach_post_backup_file)
 
     def on_scheduler_change(self, _):
         profile = self.profile()
@@ -233,3 +237,13 @@ class ScheduleTab(ScheduleBase, ScheduleUI, BackupProfileMixin):
                 QTableWidgetItem(str(log_line.returncode)),
             )
         self.logTableWidget.setSortingEnabled(sorting)  # restore sorting now that modifications are done
+
+    def attach_pre_backup_file(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Attach Pre-Backup File")
+        if file_path:
+            self.preBackupCmdLineEdit.setText(file_path)
+
+    def attach_post_backup_file(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Attach Post-Backup File")
+        if file_path:
+            self.postBackupCmdLineEdit.setText(file_path)

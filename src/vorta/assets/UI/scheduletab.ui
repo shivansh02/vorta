@@ -688,6 +688,8 @@
              </widget>
             </item>
             <item>
+            <layout class="QHBoxLayout">
+            <item>
              <widget class="QLineEdit" name="preBackupCmdLineEdit">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -712,6 +714,16 @@
               </property>
              </widget>
             </item>
+            <item>
+            <widget class="QPushButton" name="preBackupAttachButton">
+                <property name="text">
+                    <string>Attach</string>
+                </property>
+            </widget>
+        </item>
+        </layout>
+        </item>
+
            </layout>
           </item>
           <item>
@@ -736,6 +748,8 @@
              </widget>
             </item>
             <item>
+            <layout class="QHBoxLayout">
+            <item>
              <widget class="QLineEdit" name="postBackupCmdLineEdit">
               <property name="minimumSize">
                <size>
@@ -750,6 +764,16 @@
                <string>echo &quot;Backup of $repo_url ended with $returncode.&quot;</string>
               </property>
              </widget>
+            </item>
+            <item>
+            <widget class="QPushButton" name="postBackupAttachButton">
+                <property name="text">
+                    <string>Attach</string>
+                </property>
+            </widget>
+        </item>
+
+            </layout>
             </item>
            </layout>
           </item>

@@ -135,6 +135,8 @@ class ScheduleTab(ScheduleBase, ScheduleUI, BackupProfileMixin):
         self.toolBox.setItemIcon(1, get_colored_icon('wifi'))
         self.toolBox.setItemIcon(2, get_colored_icon('tasks'))
         self.toolBox.setItemIcon(3, get_colored_icon('terminal'))
+        self.postBackupAttachButton.setIcon(get_colored_icon('folder-open'))
+        self.preBackupAttachButton.setIcon(get_colored_icon('folder-open'))
 
     def populate_from_profile(self):
         """Populate current view with data from selected profile."""
@@ -239,11 +241,15 @@ class ScheduleTab(ScheduleBase, ScheduleUI, BackupProfileMixin):
         self.logTableWidget.setSortingEnabled(sorting)  # restore sorting now that modifications are done
 
     def attach_pre_backup_file(self):
-        file_path, _ = QFileDialog.getOpenFileName(self, "Attach Pre-Backup File")
+        file_path, _ = QFileDialog.getOpenFileName(self, "Attach Pre-Backup File", filter="Shell Script Files (*.sh)")
         if file_path:
-            self.preBackupCmdLineEdit.setText(file_path)
+            with open(file_path, 'r') as file:
+                contents = file.read()
+            self.preBackupCmdLineEdit.setText(contents)
 
     def attach_post_backup_file(self):
-        file_path, _ = QFileDialog.getOpenFileName(self, "Attach Post-Backup File")
+        file_path, _ = QFileDialog.getOpenFileName(self, "Attach Post-Backup File", filter="Shell Script Files (*.sh)")
         if file_path:
-            self.postBackupCmdLineEdit.setText(file_path)
+            with open(file_path, 'r') as file:
+                contents = file.read()
+            self.postBackupCmdLineEdit.setText(contents)

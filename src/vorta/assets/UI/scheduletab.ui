@@ -716,8 +716,9 @@
             </item>
             <item>
             <widget class="QPushButton" name="preBackupAttachButton">
-                <property name="text">
-                    <string>Attach</string>
+                <property name="icon">
+                    <iconset>
+                    <normaloff>:/icons/folder-open.svg</normaloff>:/icons/folder-open.svg</iconset>
                 </property>
             </widget>
         </item>
@@ -767,9 +768,10 @@
             </item>
             <item>
             <widget class="QPushButton" name="postBackupAttachButton">
-                <property name="text">
-                    <string>Attach</string>
-                </property>
+                <property name="icon">
+            <iconset>
+             <normaloff>:/icons/folder-open.svg</normaloff>:/icons/folder-open.svg</iconset>
+           </property>
             </widget>
         </item>
 

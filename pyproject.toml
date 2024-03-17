@@ -12,3 +12,7 @@ build-backend = "setuptools.build_meta"
 select = ["T", "I"]
 exclude = ["package"]
 fixable = ["I"]
+
+[tool.ruff.lint]
+select = ["E", "W"]
+ignore = ["E203", "E501"]

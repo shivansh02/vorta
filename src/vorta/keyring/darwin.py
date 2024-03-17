@@ -1,5 +1,3 @@
-# flake8: noqa
-
 """
 A dirty objc implementation to access the macOS Keychain. Because the
 keyring implementation was causing trouble when used together with other

@@ -29,7 +29,7 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: "v0.0.257"
+    rev: "v0.3.3"
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
@@ -57,10 +57,10 @@ repos:
   #         ]
 
   # check pep8 conformity using flake8
-  - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
-    hooks:
-      - id: flake8
+  # - repo: https://github.com/PyCQA/flake8
+  #   rev: 6.0.0
+  #   hooks:
+  #     - id: flake8
 
 # configuration for the pre-commit.ci bot
 # only relevant when actually using the bot

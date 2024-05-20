@@ -11,6 +11,7 @@ import unicodedata
 from datetime import datetime as dt
 from functools import reduce
 from typing import Any, Callable, Iterable, List, Optional, Tuple, TypeVar
+from datetime import datetime, timezone
 
 import psutil
 from PyQt6 import QtCore
@@ -416,14 +417,24 @@ def format_archive_name(profile, archive_name_tpl):
     """
     hostname = socket.gethostname()
     hostname = hostname.split(".")[0]
+    fqdn = _getfqdn(hostname)
+    utcnow = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S.%f')
+
     available_vars = {
         'hostname': hostname,
-        'fqdn': _getfqdn(hostname),
+        'fqdn': fqdn,
+        'reverse-fqdn': ".".join(reversed(fqdn.split("."))),
         'profile_id': profile.id,
         'profile_slug': profile.slug(),
         'now': dt.now(),
-        'utc_now': dt.utcnow(),
+        'utc_now': utcnow,
+        'utcnow': utcnow,
         'user': getpass.getuser(),
+        'pid': os.getpid(),
+        'borgversion': borg_compat.version,
+        'borgmajor': borg_compat.version.split('.')[0],
+        'borgminor': '.'.join(borg_compat.version.split('.')[:2]),
+        'borgpatch': '.'.join(borg_compat.version.split('.')[:3]),
     }
     return archive_name_tpl.format(**available_vars)
 

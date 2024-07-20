@@ -735,6 +735,8 @@ class ArchiveTab(ArchiveTabBase, ArchiveTabUI, BackupProfileMixin):
         """
         Open a dialog for choosing what to extract from the selected archive.
         """
+        # Clear any pending rename
+        self.renamed_archive_original_name = None
         profile = self.profile()
 
         row_selected = self.archiveTable.selectionModel().selectedRows()
